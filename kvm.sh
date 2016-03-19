@@ -50,11 +50,10 @@ BRIDGE="br0"' > /etc/sysconfig/network-scripts/ifcfg-eth0
 echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
 
 #set dns server
-echo 'search local
-nameserver '$dns1'
-#nameserver '$dns2'
-#nameserver '$dns3'
-' > /etc/resolv.conf
+echo -e 'search local
+nameserver '$dns1'' > /etc/resolv.conf
+#echo nameserver $dns2 >> /etc/resolv.conf
+#echo nameserver $dns3 >> /etc/resolv.conf
 
 #restart network service
 service network restart
