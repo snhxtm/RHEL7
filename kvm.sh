@@ -58,3 +58,5 @@ nameserver '$dns1'
 
 #restart network service
 service network restart
+
+exit 0
