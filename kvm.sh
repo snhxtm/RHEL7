@@ -44,7 +44,7 @@ TYPE="Ethernet"
 BOOTPROTO="none"
 ONBOOT="yes"
 NM_CONTROLLED="no"
-BRIDGE="br0"' > /etc/sysconfig/network-scripts/ifcfg-eth0
+BRIDGE="br0"' > /etc/sysconfig/network-scripts/ifcfg-$eth
 
 #set gateway
 echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
