@@ -14,21 +14,20 @@ gateway=""
 dns1=""
 dns2=""
 dns3=""
-dnsbool=""
+yn=""
 hostname=""
 
 #prompts to set values of declared variables
-#read -p "Enter ethernet device name: " eth #sets primary ethernet device name found in /etc/sysconfig/network-scripts/
 read -p "Enter ip address: " ipaddr 
 read -p "Enter netmask: " netmask
 read -p "Enter gateway: " gateway
 read -p "Enter dns server: " dns1
-read -p "Do you want to add a second dns server? (y/n): " dnsbool #prompts choice to add a 2nd nameserver in /etc/resolv.conf
+read -p "Do you want to add a second dns server? (y/n): " yn #prompts choice to add a 2nd nameserver in /etc/resolv.conf
 
-if [  $dnsbool == "y" ]; then
+if [  $yn == "y" ]; then
   read -p "Enter dns server: " dns2
-  read -p "Do you want to add a third dns server? (y/n): " dnsbool #prompts choice to add a 3rd nameserver in /etc/resolv.conf
-  if [  $dnsbool == "y" ]; then
+  read -p "Do you want to add a third dns server? (y/n): " yn #prompts choice to add a 3rd nameserver in /etc/resolv.conf
+  if [  $yn == "y" ]; then
     read -p "Enter dns server: " dns3
   fi
 fi
