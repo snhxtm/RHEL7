@@ -9,13 +9,13 @@ dns1=""
 #dns2=""
 #dns3=""
 
-#add extended repository
+#add extra packages repository
 yum install epel-release -y
 
 #run full system update
 yum update -y
 
-#install kvm dependencies
+#install network and kvm tools
 yum install net-tools bridge-utils qemu-kvm libvirt virt-install -y
 
 #disable the network manager
