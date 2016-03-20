@@ -91,7 +91,7 @@ if [ -n "$dns2" ]; then
 fi
 
 #set hostname
-hostname $hostname
+hostnamectl set-hostname $hostname
 
 #restart network service
 service network restart
