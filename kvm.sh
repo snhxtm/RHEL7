@@ -76,7 +76,7 @@ BRIDGE="br0"' > /etc/sysconfig/network-scripts/ifcfg-$eth
 echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
 
 #set dns server
-echo -e 'search '$hostname | cut -d. -f2'
+echo -e 'search '$hostname | cut -d. -f2,3'
 nameserver '$dns1'' > /etc/resolv.conf
 
 #adds 2nd and/of 3rd nameservers if variables are set
