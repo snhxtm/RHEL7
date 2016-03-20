@@ -1,2 +1,2 @@
-# kvm
-KVM installation script for RHEL7
+# RHEL7
+A collection of scripts for RHEL7
