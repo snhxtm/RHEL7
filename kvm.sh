@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#complete bash script implementation for installing and configuring a kvm server on a minimal Red Hat Enterprise Linux 7 / CentOS 7 installation.
+
+#created by William Thomas Bland
+
 #set variables
 eth=""
 ipaddr=""
