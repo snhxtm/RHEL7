@@ -15,6 +15,7 @@ dns1=""
 dns2=""
 dns3=""
 dnsbool=""
+hostname=""
 
 #prompts to set values of declared variables
 read –p "Enter ethernet device name: " eth #sets primary ethernet device name found in /etc/sysconfig/network-scripts/
@@ -31,6 +32,8 @@ if [  $dnsbool -eq 'y' ] then
     read –p "Enter dns server: " dns3
   if
 fi
+
+read –p "Enter hostname: " hostname
 
 #add extra packages repository
 yum install epel-release -y
@@ -73,7 +76,7 @@ BRIDGE="br0"' > /etc/sysconfig/network-scripts/ifcfg-$eth
 echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
 
 #set dns server
-echo -e 'search local
+echo -e 'search '$hostname | cut -d. -f2'
 nameserver '$dns1'' > /etc/resolv.conf
 
 #adds 2nd and/of 3rd nameservers if variables are set
@@ -83,6 +86,9 @@ if [ -n "$dns2" ] then
     echo nameserver $dns3 >> /etc/resolv.conf
   fi
 fi
+
+#set hostname
+hostname $hostname
 
 #restart network service
 service network restart
