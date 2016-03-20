@@ -18,22 +18,22 @@ dnsbool=""
 hostname=""
 
 #prompts to set values of declared variables
-#read –p "Enter ethernet device name: " eth #sets primary ethernet device name found in /etc/sysconfig/network-scripts/
-read –p "Enter ip address: " ipaddr 
-read –p "Enter netmask: " netmask
-read –p "Enter gateway: " gateway
-read –p "Enter dns server: " dns1
-read –p "Do you want to add a second dns server? (y/n): " dnsbool #prompts choice to add a 2nd nameserver in /etc/resolv.conf
+#read -p "Enter ethernet device name: " eth #sets primary ethernet device name found in /etc/sysconfig/network-scripts/
+read -p "Enter ip address: " ipaddr 
+read -p "Enter netmask: " netmask
+read -p "Enter gateway: " gateway
+read -p "Enter dns server: " dns1
+read -p "Do you want to add a second dns server? (y/n): " dnsbool #prompts choice to add a 2nd nameserver in /etc/resolv.conf
 
-if [  $dnsbool -eq 'y' ] then
-  read –p "Enter dns server: " dns2
-  read –p "Do you want to add a third dns server? (y/n): " dnsbool #prompts choice to add a 3rd nameserver in /etc/resolv.conf
-  if [  $dnsbool -eq 'y' ] then
-    read –p "Enter dns server: " dns3
+if [  $dnsbool == "y" ]; then
+  read -p "Enter dns server: " dns2
+  read -p "Do you want to add a third dns server? (y/n): " dnsbool #prompts choice to add a 3rd nameserver in /etc/resolv.conf
+  if [  $dnsbool == "y" ]; then
+    read -p "Enter dns server: " dns3
   fi
 fi
 
-read –p "Enter hostname: " hostname
+read -p "Enter hostname: " hostname
 
 #add extra packages repository
 yum install epel-release -y
@@ -83,9 +83,9 @@ echo -e 'search '$hostname | cut -d. -f2,3'
 nameserver '$dns1'' > /etc/resolv.conf
 
 #adds 2nd and/of 3rd nameservers if variables are set
-if [ -n "$dns2" ] then
+if [ -n "$dns2" ]; then
   echo nameserver $dns2 >> /etc/resolv.conf
-  if [ -n "$dns3" ] then
+  if [ -n "$dns3" ]; then
     echo nameserver $dns3 >> /etc/resolv.conf
   fi
 fi
