@@ -44,12 +44,11 @@ yum update -y
 #install network and kvm tools
 yum install net-tools bridge-utils qemu-kvm libvirt virt-install -y
 
-#disable the network manager
-service NetworkManager stop
-#service NetworkManager off
+#stop the network manager
+systemctl stop NetworkManager
 
-#restart network service
-service network restart
+#stop the network service
+systemctl stop network
 
 #enable nested vms and ignore msrs errors
 echo 'options kvm_intel nested=1
@@ -93,7 +92,7 @@ fi
 #set hostname
 hostnamectl set-hostname $hostname
 
-#restart network service
-service network restart
+#start network service
+systemctl start network
 
 exit 0
