@@ -30,7 +30,7 @@ if [  $dnsbool -eq 'y' ] then
   read –p "Do you want to add a third dns server? (y/n): " dnsbool #prompts choice to add a 3rd nameserver in /etc/resolv.conf
   if [  $dnsbool -eq 'y' ] then
     read –p "Enter dns server: " dns3
-  if
+  fi
 fi
 
 read –p "Enter hostname: " hostname
