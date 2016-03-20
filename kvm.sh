@@ -18,7 +18,7 @@ dnsbool=""
 hostname=""
 
 #prompts to set values of declared variables
-read –p "Enter ethernet device name: " eth #sets primary ethernet device name found in /etc/sysconfig/network-scripts/
+#read –p "Enter ethernet device name: " eth #sets primary ethernet device name found in /etc/sysconfig/network-scripts/
 read –p "Enter ip address: " ipaddr 
 read –p "Enter netmask: " netmask
 read –p "Enter gateway: " gateway
@@ -63,6 +63,9 @@ NETMASK="'$netmask'"
 BOOTPROTO="none"
 ONBOOT="yes"
 NM_CONTROLLED="no"' > /etc/sysconfig/network-scripts/ifcfg-br0
+
+#find ethernet device name
+eth=`ls /etc/sysconfig/network-scripts | grep ifcfg-e | cut -d- -f2`
 
 #modify ethernet adapter
 echo -e 'DEVICE="'$eth'"
