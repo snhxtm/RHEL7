@@ -46,7 +46,7 @@ yum install net-tools bridge-utils qemu-kvm libvirt virt-install -y
 
 #disable the network manager
 service NetworkManager stop
-service NetworkManager off
+#service NetworkManager off
 
 #restart network service
 service network restart
