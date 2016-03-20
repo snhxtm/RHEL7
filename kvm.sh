@@ -6,7 +6,7 @@
 #CREATED BY: William Thomas Bland
 ###############################################################################################################################
 
-#set variables
+#declare variables
 eth=""
 ipaddr=""
 netmask=""
