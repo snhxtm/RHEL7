@@ -43,7 +43,7 @@ yum update -y
 #install network and kvm tools
 yum install net-tools bridge-utils qemu-kvm libvirt virt-install -y
 
-#enable start libvrt service
+#enable and start libvirt service
 systemctl enable libvirtd
 systemctl start libvirtd
 
