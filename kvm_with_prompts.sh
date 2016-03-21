@@ -1,47 +1,22 @@
 #!/bin/bash
 
 ###############################################################################################################################
-#DESCRIPTION: An interactive bash script for configuring a kvm hypervisor on a minimal RHEL7/CentOS7 installation.
-#USAGE: Execute over a fresh minimal installation of RHEL7/CentOS7 and follow the prompts.
+#DESCRIPTION: Automated bash script for configuring a kvm hypervisor on a minimal RHEL7/CentOS7 installation.
+#USAGE: Edit the variables with your network configuration and execute over a fresh minimal installation of RHEL7/CentOS7.
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
 
 #declare variables
-eth=""
-ipaddr=""
-netmask=""
-gateway=""
-dns1=""
-dns2=""
-dns3=""
-yn=""
-hostname=""
-
-#prompts to set values of declared variables
-read -p "Enter ip address: " ipaddr 
-read -p "Enter netmask: " netmask
-read -p "Enter gateway: " gateway
-read -p "Enter dns server: " dns1
-read -p "Do you want to add a second dns server? (y/n): " yn #prompts choice to add a 2nd nameserver in /etc/resolv.conf
-
-if [  $yn == "y" ]; then
-  read -p "Enter dns server: " dns2
-  read -p "Do you want to add a third dns server? (y/n): " yn #prompts choice to add a 3rd nameserver in /etc/resolv.conf
-  if [  $yn == "y" ]; then
-    read -p "Enter dns server: " dns3
-  fi
-fi
-
-read -p "Enter hostname: " hostname
-
-#add extra packages repository
-yum install epel-release -y
-
-#run full system update
-yum update -y
+ipaddr=""       # Set IP Address for this machine
+netmask=""      # Set Netmask for this machine
+gateway=""      # Set Network Gateway
+dns1=""         # Set DNS Server
+dns2=""         # Optional - Set 2nd DNS Server - leave blank if not needed
+dns3=""         # Optional - Set 3nd DNS Server - leave blank if not needed
+hostname=""     # Set Hostname for this machine
 
 #install network and kvm tools
-yum install net-tools bridge-utils qemu-kvm libvirt virt-install -y
+yum install bridge-utils qemu-kvm libvirt virt-install -y
 
 #enable and start libvirt service
 systemctl enable libvirtd
@@ -52,10 +27,6 @@ systemctl stop NetworkManager
 
 #stop the network service
 systemctl stop network
-
-#enable nested vms and ignore msrs errors
-echo 'options kvm_intel nested=1
-options kvm ignore_msrs=1' > /etc/modprobe.d/kvm.conf
 
 #create bridged adapter
 echo -e 'DEVICE="br0"
