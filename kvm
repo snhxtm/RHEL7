@@ -7,13 +7,13 @@
 ###############################################################################################################################
 
 #declare variables
-ipaddr=""   # Set IP Address for this machine
-netmask=""  # Set Netmask for this machine
-gateway=""  # Set Network Gateway
-dns1=""     # Set DNS Server
-dns2=""     # Optional - Set 2nd DNS Server - leave blank if not needed
-dns3=""     # Optional - Set 3nd DNS Server - leave blank if not needed
-hostname="" # Set Hostname for this machine
+ipaddr=""       # Set IP Address for this machine
+netmask=""      # Set Netmask for this machine
+gateway=""      # Set Network Gateway
+dns1=""         # Set DNS Server
+dns2=""         # Optional - Set 2nd DNS Server - leave blank if not needed
+dns3=""         # Optional - Set 3nd DNS Server - leave blank if not needed
+hostname=""     # Set Hostname for this machine
 
 #install network and kvm tools
 yum install bridge-utils qemu-kvm libvirt virt-install -y
