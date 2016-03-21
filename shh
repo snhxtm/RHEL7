@@ -23,7 +23,7 @@ if [ -n "$allowusers" ]; then
   echo AllowUsers $allowusers >> /etc/ssh/sshd_config
 fi
 
-#Remove ssh_config backup file
+#Removes ssh_config backup file
 rm -f /etc/ssh_config_bkp
 
 exit 0
