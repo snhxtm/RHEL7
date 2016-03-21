@@ -44,8 +44,8 @@ yum update -y
 yum install net-tools bridge-utils qemu-kvm libvirt virt-install -y
 
 #enable start libvrt service
-systemctl enable libvrtd
-systemctl start libvrtd
+systemctl enable libvirtd
+systemctl start libvirtd
 
 #stop the network manager
 systemctl stop NetworkManager
