@@ -19,6 +19,6 @@ console=""
 location=""
 args=""
 
-virsh --os-type $ostype --os-variant $osvariant --name $name --vcpus $vcpu --ram $ram --disk path=$diskpath,size=$disksize --graphics $graphics --network bridge=$nbridge --console $console --location ''$location'' --extra-args ''$args''
+virsh --os-type $ostype --os-variant $osvariant --name $name --vcpus $vcpu --ram $ram --disk path=$diskpath/$name.img,size=$disksize --graphics $graphics --network bridge=$nbridge --console $console --location ''$location'' --extra-args ''$args''
 
 exit 0
