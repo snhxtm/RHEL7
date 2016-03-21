@@ -13,6 +13,6 @@ yum install epel-release -y
 yum update -y
 
 #install essential tools
-yum install net-tools bind-utils bridge-utils pciutils usbutils yum-utils zip unzip psmisc gdisk mlocate at ntp ntpdate -y
+yum install net-tools bind-utils pciutils usbutils yum-utils wget zip unzip psmisc gdisk mlocate at ntp ntpdate -y
 
 exit 0
