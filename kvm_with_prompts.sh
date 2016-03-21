@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ###############################################################################################################################
-#DESCRIPTION: Interactive bash script for configuring a kvm hypervisor on a minimal RHEL7/CentOS7 installation.
-#USAGE: Execute over a fresh minimal installation of RHEL7/CentOS7.
+#DESCRIPTION: An interactive bash script for configuring a kvm hypervisor on a minimal RHEL7/CentOS7 installation.
+#USAGE: Execute over a fresh minimal installation of RHEL7/CentOS7 and follow the prompts.
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
 
