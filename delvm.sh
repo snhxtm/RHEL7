@@ -1,12 +1,13 @@
 #!/bin/bash
 
 $vm=""
+$pool=""
 
 virsh list --all
 read -p "Enter virtual machine name to delete: " vm
 virsh destroy $vm
 virsh undefine $vm
-virsh vol-delete --pool vg0 $vm.img
-#rm -f /var/kvm/images/$vm
+virsh pool-refresh $pool
+virsh vol-delete --pool $pool $vm.img
 
 exit 0
