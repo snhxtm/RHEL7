@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###############################################################################################################################
-#DESCRIPTION: An automated bash script for creating a new virtual machine on a KVM enabled RHEL7/CentOS7 installation.
+#DESCRIPTION: An automated bash script for creating a new virtual machine with virt-install on a KVM enabled RHEL7/CentOS7.
 #USAGE: Edit the variables with desired VM settings and execute on a KVM enabled RHEL7/CentOS7.
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
