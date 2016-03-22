@@ -6,19 +6,28 @@
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
 
-ostype=""
-osvariant==""
-name=""
-vcpu=""
-ram=""
-disksize=""
-diskpath==""
-graphics==""
-nbridge=""
-console=""
-location=""
-args=""
+ostype=""         # Example - linux
+osvariant==""     # Example - rhel7
+name=""           # Example - vm001
+vcpu=""           # Example - 1
+ram=""            # Example - 1024
+disksize=""       # Example - 10
+diskpath==""      # Example - /var/kvm/images
+graphics==""      # Example - none
+nbridge=""        # Example - br0
+location=""       # Example - htto://mirror.centos.org/centos/7/os/x86_64/
+args=""           # Example - console=tty0 console=ttyS0,115200
 
-virsh --os-type $ostype --os-variant $osvariant --name $name --vcpus $vcpu --ram $ram --disk path=$diskpath/$name.img,size=$disksize --graphics $graphics --network bridge=$nbridge --console $console --location ''$location'' --extra-args ''$args''
+virt-install \
+--os-type $ostype \
+--os-variant $osvariant \
+--name $name \
+--vcpus $vcpu \
+--ram $ram \
+--disk path=$diskpath/$name.img,size=$disksize \
+--graphics $graphics \
+--network bridge=$nbridge \
+--location $location \
+--extra-args=\"$args\"
 
 exit 0
