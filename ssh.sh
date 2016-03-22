@@ -6,27 +6,27 @@
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
 
-# Declate Variables
+# Declare Variables
 permitroot=""       # Enable or Disable SSH root access - Options: yes, no
 port=""             # Set port for SSH service
 protocol=""         # Set SSH Protocol - Options: 1, 2
 allowusers=""       # Optional - Leave blank if uneeded - Set allowed users - Usage: Enter space between users
 
-# Creates a temporary backup of sshd_config
-cp /etc/ssh/sshd_config /etc/ssh/sshd_config_bkp
+# Create a backup of default sshd_config
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config_default
 
-# Changes root permission, protocol and port configuration in sshd_config based on set variables
-cat /etc/ssh/sshd_config_bkp | sed 's/#PermitRootLogin yes/PermitRootLogin '$permitroot'/'  | sed 's/#Protocol 2/Protocol '$protocol'/' | sed 's/#Port 22/Port '$port'/' > /etc/ssh/sshd_config
+# Change root permission, protocol and port configuration in sshd_config based on set variables
+sed -i 's/#PermitRootLogin yes/PermitRootLogin '$permitroot'/' | \
+sed -i 's/#Protocol 2/Protocol '$protocol'/' | \
+sed -i 's/#Port 22/Port '$port'/' \
+/etc/ssh/sshd_config
 
-# Runs and sets allowed users if variable is not left blank
+# Run and set allowed users if variable is not left blank
 if [ -n "$allowusers" ]; then
   echo AllowUsers $allowusers >> /etc/ssh/sshd_config
 fi
 
-# Removes ssh_config backup file
-rm -f /etc/ssh/sshd_config_bkp
-
-# Restarts SSH service
+# Restart SSH service
 systemctl restart sshd
 
 exit 0
