@@ -6,7 +6,7 @@
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
 
-#declare variables
+# Declare variables
 ipaddr=""       # Set IP Address for this machine
 netmask=""      # Set Netmask for this machine
 gateway=""      # Set Network Gateway
@@ -15,20 +15,20 @@ dns2=""         # Optional - Set 2nd DNS Server - leave blank if not needed
 dns3=""         # Optional - Set 3nd DNS Server - leave blank if not needed
 hostname=""     # Set Hostname for this machine
 
-#install network and kvm tools
+# Install network and kvm tools
 yum install bridge-utils qemu-kvm libvirt virt-install -y
 
-#enable and start libvirt service
+# Enable and start libvirt service
 systemctl enable libvirtd
 systemctl start libvirtd
 
-#stop the network manager
+# Stop network manager
 systemctl stop NetworkManager
 
-#stop the network service
+# Stop network service
 systemctl stop network
 
-#create bridged adapter
+# Create bridged adapter
 echo -e 'DEVICE="br0"
 TYPE="Bridge"
 IPADDR="'$ipaddr'"
@@ -37,10 +37,10 @@ BOOTPROTO="none"
 ONBOOT="yes"
 NM_CONTROLLED="no"' > /etc/sysconfig/network-scripts/ifcfg-br0
 
-#find ethernet device name
+# Find ethernet device name
 eth=`ls /etc/sysconfig/network-scripts | grep ifcfg-e | cut -d- -f2`
 
-#modify ethernet adapter
+# Modify ethernet adapter
 echo -e 'DEVICE="'$eth'"
 TYPE="Ethernet"
 BOOTPROTO="none"
@@ -51,11 +51,11 @@ BRIDGE="br0"' > /etc/sysconfig/network-scripts/ifcfg-$eth
 #set gateway
 echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
 
-#set dns server
+#set nameserver
 echo $hostname | cut -d. -f2,3 | sed s/^/"search "/ > /etc/resolv.conf
 echo nameserver $dns1 >> /etc/resolv.conf
 
-#adds 2nd and/of 3rd nameservers if variables are set
+# Add 2nd and/or 3rd nameservers if variables are set
 if [ -n "$dns2" ]; then
   echo nameserver $dns2 >> /etc/resolv.conf
   if [ -n "$dns3" ]; then
@@ -63,10 +63,13 @@ if [ -n "$dns2" ]; then
   fi
 fi
 
-#set hostname
+# Set hostname
 hostnamectl set-hostname $hostname
 
-#start network service
+# Start network service
 systemctl start network
+
+# Create KVM images folder
+mkdir -p /var/kvm/images
 
 exit 0
