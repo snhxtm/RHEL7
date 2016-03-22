@@ -29,6 +29,6 @@ virt-install \
 --graphics $graphics \
 --network bridge=$nbridge \
 --location $location \
---extra-args=\"ks=$ks $args\"
+--extra-args="ks=$ks $args"
 
 exit 0
