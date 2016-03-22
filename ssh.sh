@@ -16,7 +16,7 @@ allowusers=""       # Optional - Leave blank if uneeded - Set allowed users - Us
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config_bkp
 
 # Changes root permission, protocol and port configuration in sshd_config based on set variables
-cat /etc/ssh/sshd_config_bkp | sed 's/#PermitRootLogin yes/#PermitRootLogin '$permitroot'/'  | sed 's/#Protocol 2/Protocol '$protocol'/' | sed 's/#Port 22/Port '$port'/' > /etc/ssh/sshd_config
+cat /etc/ssh/sshd_config_bkp | sed 's/#PermitRootLogin yes/PermitRootLogin '$permitroot'/'  | sed 's/#Protocol 2/Protocol '$protocol'/' | sed 's/#Port 22/Port '$port'/' > /etc/ssh/sshd_config
 
 # Runs and sets allowed users if variable is not left blank
 if [ -n "$allowusers" ]; then
