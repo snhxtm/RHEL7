@@ -7,15 +7,15 @@
 ###############################################################################################################################
 
 ostype=""         # Example - linux
-osvariant==""     # Example - rhel7
+osvariant=""      # Example - rhel7
 name=""           # Example - vm001
 vcpu=""           # Example - 1
 ram=""            # Example - 1024
 disksize=""       # Example - 10
-diskpath==""      # Example - /var/kvm/images
-graphics==""      # Example - none
+diskpath=""       # Example - /var/kvm/images
+graphics=""       # Example - none
 nbridge=""        # Example - br0
-location=""       # Example - htto://mirror.centos.org/centos/7/os/x86_64/
+location=""       # Example - http://mirror.centos.org/centos/7/os/x86_64/
 args=""           # Example - console=tty0 console=ttyS0,115200
 ks=""             # Example - https://raw.githubusercontent.com/Halakor/RHEL7/dev/ks.cfg
 
