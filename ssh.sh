@@ -16,10 +16,9 @@ allowusers=""       # Optional - Leave blank if uneeded - Set allowed users - Us
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config_default
 
 # Change root permission, protocol and port configuration in sshd_config based on set variables
-sed -i 's/#PermitRootLogin yes/PermitRootLogin '$permitroot'/' | \
-sed -i 's/#Protocol 2/Protocol '$protocol'/' | \
-sed -i 's/#Port 22/Port '$port'/' \
-/etc/ssh/sshd_config
+sed -i 's/#PermitRootLogin yes/PermitRootLogin '$permitroot'/' /etc/ssh/sshd_config
+sed -i 's/#Protocol 2/Protocol '$protocol'/' /etc/ssh/sshd_config
+sed -i 's/#Port 22/Port '$port'/' /etc/ssh/sshd_config
 
 # Run and set allowed users if variable is not left blank
 if [ -n "$allowusers" ]; then
