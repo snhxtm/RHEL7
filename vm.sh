@@ -17,6 +17,7 @@ graphics==""      # Example - none
 nbridge=""        # Example - br0
 location=""       # Example - htto://mirror.centos.org/centos/7/os/x86_64/
 args=""           # Example - console=tty0 console=ttyS0,115200
+ks=""             # Example - https://raw.githubusercontent.com/Halakor/RHEL7/dev/ks.cfg
 
 virt-install \
 --os-type $ostype \
@@ -28,6 +29,6 @@ virt-install \
 --graphics $graphics \
 --network bridge=$nbridge \
 --location $location \
---extra-args=\"$args\"
+--extra-args=\"ks=$ks $args\"
 
 exit 0
