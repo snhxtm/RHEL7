@@ -6,7 +6,7 @@
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
 
-$reposdir=""      # Example - /home/repos/centos/7/
+$repodir=""      # Example - /home/repos/centos/7/
 $mirror=""        # Example - ftp.plusline.de/CentOS/7/
 $reponame=""      # Example - Local CentOS 7 Repository
 $filename=""      # Example - local.repo
@@ -16,14 +16,14 @@ $repolist=""
 yum install createrepo rsync httpd -y
 
 # Create directory where repository will be downloaded
-mkdir -p $reposdir
+mkdir -p $repodir
 
 # Create repository
-createrepo $reposdir
+createrepo $repodir
 
 # Create symbolic link between local repository and ftp directory
-$reposroot=$(echo $reposdir | cut -d/ -f2,3)
-ln -s $reposroot /var/www/html
+$reporoot=$(echo $repodir | cut -d/ -f2,3)
+ln -s $reporoot /var/www/html
 
 # Start apache service
 systemctl start httpd
