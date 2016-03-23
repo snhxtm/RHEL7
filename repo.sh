@@ -28,7 +28,7 @@ $reposroot=$(echo $reposdir | cut -d/ -f2,3)
 ln -s $reposroot /var/ftp
 
 # Define repository in /etc/yum.repos.d/
-echo -e '[mylocalrepo] \
+echo -e '[localrepo] \
 name='$name' \
 baseurl=ftp://'$HOSTNAME'/centos/7 \
 gpgcheck=0' > /etc/yum.repos.d/$filename
