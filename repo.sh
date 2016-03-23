@@ -27,6 +27,9 @@ rsync -rz --progress rsync://$mirror $localdir
 $reposroot=$(echo $reposdir | cut -d/ -f2,3)
 ln -s $reposroot /var/ftp
 
+# Start ftp service
+systemctl start vsftpd
+
 # Define repository in /etc/yum.repos.d/
 echo -e '[localrepo] \
 name='$name' \
