@@ -12,7 +12,7 @@ $reponame=""      # Example - Local CentOS 7 Repository
 $filename=""      # Example - local.repo
 
 # Install packages
-yum install createrepo rsync vsftpd -y
+yum install createrepo rsync httpd -y
 
 # Create directory where repository will be downloaded
 mkdir -p $reposdir
@@ -25,10 +25,10 @@ rsync -rz --progress rsync://$mirror $localdir
 
 # Create symbolic link between local repository and ftp directory
 $reposroot=$(echo $reposdir | cut -d/ -f2,3)
-ln -s $reposroot /var/ftp
+ln -s $reposroot /var/www/html
 
 # Start ftp service
-systemctl start vsftpd
+systemctl start httpd
 
 # Define repository in /etc/yum.repos.d/
 echo -e '[localrepo] \
