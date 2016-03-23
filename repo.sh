@@ -7,9 +7,10 @@
 ###############################################################################################################################
 
 $reposdir=""      # Example - /home/repos/centos/7/
-$mirror=""        # Example - rsync://ftp.plusline.de/CentOS/7/os_x64_86
+$mirror=""        # Example - ftp.plusline.de/CentOS/7/
 $reponame=""      # Example - Local CentOS 7 Repository
 $filename=""      # Example - local.repo
+$repolist=""
 
 # Install packages
 yum install createrepo rsync httpd -y
@@ -20,20 +21,20 @@ mkdir -p $reposdir
 # Create repository
 createrepo $reposdir
 
-# Sync local repository with mirror
-rsync -rz --progress rsync://$mirror $localdir
-
 # Create symbolic link between local repository and ftp directory
 $reposroot=$(echo $reposdir | cut -d/ -f2,3)
 ln -s $reposroot /var/www/html
 
-# Start ftp service
+# Start apache service
 systemctl start httpd
 
-# Define repository in /etc/yum.repos.d/
-echo -e '[localrepo] \
-name='$name' \
-baseurl=ftp://'$HOSTNAME'/repos/centos/7 \
-gpgcheck=0' > /etc/yum.repos.d/$filename
+# Define repositories in /etc/yum.repos.d/ and create synced directories
+for repo in $repolist; do
+echo -e '['$repo']
+name='$repo'
+baseurl=ftp://'$HOSTNAME'/repos/centos/7/'$repo'/x86_64
+gpgcheck=0' >> /etc/yum.repos.d/local.repo
+rsync -rz --progress rsync://$mirror/$repo/x86_64 $localdir/$repo
+done
 
 exit 0
