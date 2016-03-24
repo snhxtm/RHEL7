@@ -2,8 +2,8 @@
 ###### Created by: William Thomas Bland
 
 ### delvm.sh
-DESCRIPTION: Completely removes a selected virtual machine.<br>
-USAGE: Edit the variables with desired VM settings and execute on a KVM enabled RHEL7/CentOS7.
+* **Description**: Completely removes a selected virtual machine.<br>
+* **Usage**: Edit the variables with desired VM settings and execute on a KVM enabled RHEL7/CentOS7.
 
 ###ks.cfg
 **Description:** A kickstart file for an unattended installation of RHEL7/CentOS7.<br>
