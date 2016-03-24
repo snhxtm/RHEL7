@@ -25,8 +25,9 @@ createrepo $repodir
 $reporoot=$(echo $repodir | cut -d/ -f2,3)
 ln -s $reporoot /var/www/html
 
-# Start apache service
+# Start and enable apache service
 systemctl start httpd
+systemctl enable httpd
 
 # Define repositories in /etc/yum.repos.d/ and create synced directories
 for repo in $repolist; do
