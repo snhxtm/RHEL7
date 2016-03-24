@@ -1,10 +1,14 @@
 #!/bin/bash
 
-$vm=""
-$pool=""
+###############################################################################################################################
+#DESCRIPTION: An automated bash script that completely removes a selected virtual machine.
+#USAGE: Edit the variables with desired VM settings and execute on a KVM enabled RHEL7/CentOS7.
+#CREATED BY: William Thomas Bland.
+###############################################################################################################################
 
-virsh list --all
-read -p "Enter virtual machine name to delete: " vm
+$vm=""      # Virtual machine name
+$pool=""    # KVM images folder
+
 virsh destroy $vm
 virsh undefine $vm
 virsh pool-refresh $pool
