@@ -6,11 +6,11 @@
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
 
-$repodir=""      # Example - /home/repos/centos/7/
+$repodir=""       # Example - /home/repos/centos/7/
 $mirror=""        # Example - ftp.plusline.de/CentOS/7/
-$reponame=""      # Example - Local CentOS 7 Repository
 $filename=""      # Example - local.repo
-$repolist=""
+$repolist=""      # Example - os updates extras
+$epel=""          # Example - ftp.plusline.de/epel/7/     
 
 # Install packages
 yum install createrepo rsync httpd -y
@@ -36,5 +36,14 @@ baseurl=ftp://'$HOSTNAME'/repos/centos/7/'$repo'/x86_64
 gpgcheck=0' >> /etc/yum.repos.d/local.repo
 rsync -rz --progress rsync://$mirror/$repo/x86_64 $localdir/$repo
 done
+
+# Define epel repository in /etc/yum.repos.d/ and create synced directories if variable is set
+if [ -n "$epel" ]; then
+echo -e '[epel]
+name=epel
+baseurl=ftp://'$HOSTNAME'/repos/centos/7/epel/x86_64
+gpgcheck=0' >> /etc/yum.repos.d/local.repo
+rsync -rz --progress rsync://$epel/x86_64 $localdir/epel
+fi
 
 exit 0
