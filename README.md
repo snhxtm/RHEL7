@@ -4,7 +4,7 @@
 
 delvm.sh
 ---
-* **Description:** Completely removes a selected virtual machine on a KVM hypervisor.<br>
+* **Description:** Completely remove a selected virtual machine on a KVM hypervisor.<br>
 * **Usage:** Edit variables with desired VM settings and execute.
 
 ks.cfg
@@ -19,7 +19,7 @@ kvm.sh
 
 post.sh
 ---
-* **Description:** Perform full update and installs essential packages.<br>
+* **Description:** Perform full update and install essential packages.<br>
 * **Usage:** No variables to edit, simply execute script.
 
 repo.sh
