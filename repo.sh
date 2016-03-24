@@ -10,7 +10,8 @@ $repodir=""       # Example - /home/repos/centos/7/
 $mirror=""        # Example - ftp.plusline.de/CentOS/7/
 $filename=""      # Example - local.repo
 $repolist=""      # Example - os updates extras
-$epel=""          # Example - ftp.plusline.de/epel/7/     
+$epel=""          # Example - ftp.plusline.de/epel/7/
+$epelenable=""    # Example - y/n
 
 # Install packages
 yum install createrepo rsync httpd -y
@@ -44,6 +45,11 @@ echo -e '[epel]
 name=epel
 baseurl=ftp://'$HOSTNAME'/repos/centos/7/epel/x86_64
 gpgcheck=0' >> /etc/yum.repos.d/local.repo
+if [ $epelenable == "y" ]; then
+echo "enabled=1" >> /etc/yum.repos.d/local.repo
+else
+echo "enabled=0" >> /etc/yum.repos.d/local.repo
+fi
 rsync -rz --progress --exclude debug/ rsync://$epel/x86_64 $localdir/epel
 fi
 
