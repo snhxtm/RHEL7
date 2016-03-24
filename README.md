@@ -1,7 +1,5 @@
 # A Collection of scripts for RHEL7/CentOS7
-###### Created by: William Thomas Bland
----
-<br>
+###### Created by: William Thomas Bland<br>
 
 delvm.sh
 ---
