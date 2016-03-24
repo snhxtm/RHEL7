@@ -43,7 +43,7 @@ echo -e '[epel]
 name=epel
 baseurl=ftp://'$HOSTNAME'/repos/centos/7/epel/x86_64
 gpgcheck=0' >> /etc/yum.repos.d/local.repo
-rsync -rz --progress rsync://$epel/x86_64 $localdir/epel
+rsync -rz --progress --exclude debug/ rsync://$epel/x86_64 $localdir/epel
 fi
 
 exit 0
