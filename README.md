@@ -7,9 +7,9 @@ delvm.sh
 * **Description:** Completely remove a selected virtual machine on a KVM hypervisor.<br>
 * **Usage:** Edit variables with desired VM settings and execute.
 
-ks.cfg
+vm.ks
 ---
-* **Description:** A kickstart file for an unattended installation.<br>
+* **Description:** A kickstart file for an unattended installation of a virtual machine.<br>
 * **Usage:** Edit settings to change installation instructions. Root password set to "temp".
 
 kvm.sh
