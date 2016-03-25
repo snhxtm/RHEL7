@@ -6,7 +6,7 @@
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
 
-$repodir=""       # Example - /home/repos/centos/7/
+$repodir=""       # Example - /var/www/html/repos/centos/7/
 $mirror=""        # Example - ftp.plusline.de/CentOS/7/
 $filename=""      # Example - local.repo
 $repolist=""      # Example - os updates extras
@@ -50,7 +50,7 @@ echo -e '['$repo']
 name='$repo'
 baseurl=ftp://'$HOSTNAME'/repos/centos/7/'$repo'/x86_64
 gpgcheck=0' >> /etc/yum.repos.d/local.repo
-rsync -rz --progress rsync://$mirror/$repo/x86_64 $localdir/$repo
+rsync -av rsync://$mirror/$repo/x86_64 $localdir/$repo
 done
 
 # Define epel repository in /etc/yum.repos.d/ and create synced directories if variable is set
@@ -64,7 +64,7 @@ echo "enabled=1" >> /etc/yum.repos.d/local.repo
 else
 echo "enabled=0" >> /etc/yum.repos.d/local.repo
 fi
-rsync -rz --progress --exclude debug/ rsync://$epel/x86_64 $localdir/epel
+rsync -av --exclude debug/ rsync://$epel/x86_64 $localdir/epel
 fi
 
 exit 0
