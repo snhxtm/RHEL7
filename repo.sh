@@ -19,8 +19,15 @@ yum install createrepo rsync httpd -y
 # Create directory where repository will be downloaded
 mkdir -p $repodir
 
-# Create repository
-createrepo $repodir
+# Create repositories
+for repo in $repolist; do
+createrepo $repodir/$repo/x86_64
+done
+
+# Create epel repo if variable is set
+if [ -n "$epel" ]; then
+createrepo $repodir/$repo/x86_64
+fi
 
 # Create symbolic link between local repository and ftp directory
 $reporoot=$(echo $repodir | cut -d/ -f2,3)
