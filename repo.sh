@@ -29,10 +29,6 @@ if [ -n "$epel" ]; then
 createrepo $repodir/epel/x86_64
 fi
 
-# Create symbolic link between local repository and ftp directory
-$reporoot=$(echo $repodir | cut -d/ -f2,3)
-ln -s $reporoot /var/www/html
-
 # Configure selinux
 semanage fcontext --add -t httpd_sys_rw_content_t 'var/www/html/repos(/.*)?'
 restorecon -R -v /var/www/html/repos
