@@ -26,7 +26,7 @@ done
 
 # Create epel repo if variable is set
 if [ -n "$epel" ]; then
-createrepo $repodir/$repo/x86_64
+createrepo $repodir/epel/x86_64
 fi
 
 # Create symbolic link between local repository and ftp directory
