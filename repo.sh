@@ -14,7 +14,7 @@ $epel=""          # Example - ftp.plusline.de/epel/7/
 $epelenable=""    # Example - y/n
 
 # Install packages
-yum install createrepo rsync httpd -y
+yum install policycoreutils-python createrepo rsync httpd -y
 
 # Create directory where repository will be downloaded
 mkdir -p $repodir
@@ -32,6 +32,13 @@ fi
 # Create symbolic link between local repository and ftp directory
 $reporoot=$(echo $repodir | cut -d/ -f2,3)
 ln -s $reporoot /var/www/html
+
+# Configure selinux
+semanage fcontext --add -t httpd_sys_rw_content_t 'var/www/html/repos(/.*)?'
+restorecon -R -v /var/www/html/repos
+
+# Remove apache test page
+rm -f /etc/httpd/conf.d/welcome.conf
 
 # Start and enable apache service
 systemctl start httpd
