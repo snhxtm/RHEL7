@@ -49,10 +49,10 @@ ONBOOT="yes"
 NM_CONTROLLED="no"
 BRIDGE="br0"' > /etc/sysconfig/network-scripts/ifcfg-$eth
 
-#set gateway
+# Set gateway
 echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
 
-#set nameserver
+# Set nameserver
 echo $hostname | cut -d. -f2,3 | sed s/^/"search "/ > /etc/resolv.conf
 echo nameserver $dns1 >> /etc/resolv.conf
 
