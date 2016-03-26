@@ -6,7 +6,7 @@
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
 
-$repodir=""       # Example - /var/www/html/repos/centos/7/
+$repodir=""       # Example - /var/www/html/centos/7/
 $mirror=""        # Example - ftp.plusline.de/CentOS/7/
 $filename=""      # Example - local.repo
 $repolist=""      # Example - os updates extras
@@ -32,8 +32,8 @@ createrepo $repodir/epel/x86_64
 fi
 
 # Configure selinux
-semanage fcontext --add -t httpd_sys_rw_content_t 'var/www/html/repos(/.*)?'
-restorecon -R -v /var/www/html/repos
+semanage fcontext --add -t httpd_sys_rw_content_t 'var/www/html(/.*)?'
+restorecon -R -v /var/www/html
 
 # Remove apache test page
 rm -f /etc/httpd/conf.d/welcome.conf
@@ -46,7 +46,7 @@ systemctl enable httpd
 for repo in $repolist; do
 echo -e '['$repo']
 name='$repo'
-baseurl=ftp://'$HOSTNAME'/repos/centos/7/'$repo'/x86_64
+baseurl=ftp://'$HOSTNAME'/centos/7/'$repo'/x86_64
 gpgcheck=0' >> /etc/yum.repos.d/local.repo
 rsync -av rsync://$mirror/$repo/x86_64 $localdir/$repo
 done
@@ -55,7 +55,7 @@ done
 if [ -n "$epel" ]; then
 echo -e '[epel]
 name=epel
-baseurl=ftp://'$HOSTNAME'/repos/centos/7/epel/x86_64
+baseurl=ftp://'$HOSTNAME'/centos/7/epel/x86_64
 gpgcheck=0' >> /etc/yum.repos.d/local.repo
 if [ $epelenable == "y" ]; then
 echo "enabled=1" >> /etc/yum.repos.d/local.repo
