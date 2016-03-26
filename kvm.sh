@@ -22,8 +22,9 @@ yum install bridge-utils qemu-kvm libvirt virt-install -y
 systemctl enable libvirtd
 systemctl start libvirtd
 
-# Stop network manager
-#systemctl stop NetworkManager
+# Stop and disable network manager
+systemctl stop NetworkManager
+systemctl disable NetworkManager
 
 # Stop network service
 systemctl stop network
@@ -33,11 +34,9 @@ echo -e 'DEVICE="br0"
 TYPE="Bridge"
 BOOTPROTO="none"
 ONBOOT="yes"
+NM_CONTROLLED="no"
 IPADDR="'$ipaddr'"
-NETMASK="'$netmask'"
-GATEWAY="'$gateway'"
-DNS1="'$dns1'"' > /etc/sysconfig/network-scripts/ifcfg-br0
-#NM_CONTROLLED="no"
+NETMASK="'$netmask'"' > /etc/sysconfig/network-scripts/ifcfg-br0
 
 # Find ethernet device name
 eth=`ls /etc/sysconfig/network-scripts | grep ifcfg-e | cut -d- -f2`
@@ -47,21 +46,21 @@ echo -e 'DEVICE="'$eth'"
 TYPE="Ethernet"
 BOOTPROTO="none"
 ONBOOT="yes"
+NM_CONTROLLED="no"
 BRIDGE="br0"' > /etc/sysconfig/network-scripts/ifcfg-$eth
-#NM_CONTROLLED="no"
 
 #set gateway
-#echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
+echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
 
 #set nameserver
-#echo $hostname | cut -d. -f2,3 | sed s/^/"search "/ > /etc/resolv.conf
-#echo nameserver $dns1 >> /etc/resolv.conf
+echo $hostname | cut -d. -f2,3 | sed s/^/"search "/ > /etc/resolv.conf
+echo nameserver $dns1 >> /etc/resolv.conf
 
 # Add 2nd and/or 3rd nameservers if variables are set
 if [ -n "$dns2" ]; then
-  echo DNS2=\"$dns2\" >> /etc/sysconfig/network-scripts/ifcfg-br0
+  echo nameserver $dns2 >> /etc/resolv.conf
   if [ -n "$dns3" ]; then
-    echo DNS3=\"$dns3\" >> /etc/sysconfig/network-scripts/ifcfg-br0
+    echo nameserver $dns3 >> /etc/resolv.conf
   fi
 fi
 
