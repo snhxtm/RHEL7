@@ -2,6 +2,11 @@
 ***Created by: William Thomas Bland***<br>
 <br>
 
+bridge.sh
+---
+* **Description:** Configure a bridged network interface.<br>
+* **Usage:** Edit variables with desired network configuration and execute.
+
 delvm.sh
 ---
 * **Description:** Completely remove a selected virtual machine on a KVM hypervisor.<br>
