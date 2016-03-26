@@ -17,6 +17,11 @@ post.sh
 * **Description:** Perform full update and install essential packages.<br>
 * **Usage:** No variables to edit, simply execute script.
 
+pxe.sh
+---
+* **Description:** configure network booting from local repository.<br>
+* **Usage:** Edit the variables with desired configuration and execute.
+
 repo.sh
 ---
 * **Description:** Configure and sync a local repository and set sync schedule.<br>
