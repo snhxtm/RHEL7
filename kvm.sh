@@ -75,6 +75,6 @@ systemctl start network
 # Create KVM images folder
 mkdir -p /var/kvm/images
 
-exit 0
-
 ###############################################################################################################################
+
+exit 0
