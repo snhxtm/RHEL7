@@ -15,6 +15,8 @@ dns2=""         # Optional - Set 2nd DNS Server - leave blank if not needed
 dns3=""         # Optional - Set 3nd DNS Server - leave blank if not needed
 hostname=""     # Set Hostname for this machine
 
+###############################################################################################################################
+
 # Install network and kvm tools
 yum install bridge-utils qemu-kvm libvirt virt-install -y
 
@@ -74,3 +76,5 @@ systemctl start network
 mkdir -p /var/kvm/images
 
 exit 0
+
+###############################################################################################################################
