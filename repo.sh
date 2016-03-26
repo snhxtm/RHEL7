@@ -48,7 +48,9 @@ echo -e '['$repo']
 name='$repo'
 baseurl=ftp://'$HOSTNAME'/centos/7/'$repo'/x86_64
 gpgcheck=0' >> /etc/yum.repos.d/local.repo
-rsync -av rsync://$mirror/$repo/x86_64 $localdir/$repo
+rsync -av rsync://$mirror/$repo/x86_64 $repodir/$repo
+cron=$cron; rsync -av rsync://$mirror/$repo/x86_64 $repodir/$repo
+
 done
 
 # Define epel repository in /etc/yum.repos.d/ and create synced directories if variable is set
@@ -62,7 +64,10 @@ echo "enabled=1" >> /etc/yum.repos.d/local.repo
 else
 echo "enabled=0" >> /etc/yum.repos.d/local.repo
 fi
-rsync -av --exclude debug/ rsync://$epel/x86_64 $localdir/epel
+rsync -av --exclude debug/ rsync://$epel/x86_64 $repodir/epel
+cron=$cron; rsync -av --exclude debug/ rsync://$epel/x86_64 $repodir/epel
 fi
+
+echo 0 0 * * * 0 root $cron >> /etc/crontab
 
 exit 0
