@@ -27,6 +27,11 @@ ssh.sh
 * **Description:** Configure hardened SSH service.<br>
 * **Usage:** Edit variables with desired configuration and execute.
 
+staticip.sh
+---
+* **Description:** Configure a static IP.<br>
+* **Usage:** Edit variables with desired network configuration and execute.
+
 vm.ks
 ---
 * **Description:** A kickstart file for an unattended installation of a virtual machine.<br>
