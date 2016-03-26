@@ -19,6 +19,8 @@ location=""       # Example - http://mirror.centos.org/centos/7/os/x86_64/
 args=""           # Example - console=tty0 console=ttyS0,115200
 ks=""             # Example - https://raw.githubusercontent.com/Halakor/RHEL7/dev/vm.ks
 
+###############################################################################################################################
+
 virt-install \
 --os-type $ostype \
 --os-variant $osvariant \
