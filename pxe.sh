@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###############################################################################################################################
-#DESCRIPTION: An automated bash script for configuring and syncing a local repository on RHEL7/CentOS7.
+#DESCRIPTION: An automated bash script for configuring network booting from local repository on RHEL7/CentOS7.
 #USAGE: Edit the variables with your configuration and execute on RHEL7/CentOS7.
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
