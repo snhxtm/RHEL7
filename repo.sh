@@ -31,17 +31,6 @@ if [ -n "$epel" ]; then
 createrepo $repodir/epel/x86_64
 fi
 
-# Configure selinux
-semanage fcontext --add -t httpd_sys_rw_content_t 'var/www/html(/.*)?'
-restorecon -R -v /var/www/html
-
-# Remove apache test page
-rm -f /etc/httpd/conf.d/welcome.conf
-
-# Start and enable apache service
-systemctl start httpd
-systemctl enable httpd
-
 # Define repositories in /etc/yum.repos.d/ and create synced directories
 for repo in $repolist; do
 echo -e '['$repo']
@@ -69,5 +58,16 @@ fi
 
 # Add cronjob to keep repos synced
 echo 0 0 * * * 0 root $cron >> /etc/crontab
+
+# Configure selinux
+semanage fcontext --add -t httpd_sys_rw_content_t 'var/www/html(/.*)?'
+restorecon -R -v /var/www/html
+
+# Remove apache test page
+rm -f /etc/httpd/conf.d/welcome.conf
+
+# Start and enable apache service
+systemctl start httpd
+systemctl enable httpd
 
 exit 0
