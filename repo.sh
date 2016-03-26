@@ -13,6 +13,8 @@ $repolist=""      # Example - os updates extras
 $epel=""          # Example - ftp.plusline.de/epel/7/
 $epelenable=""    # Example - y/n
 
+###############################################################################################################################
+
 # Install packages
 yum install policycoreutils-python createrepo rsync httpd -y
 
