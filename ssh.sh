@@ -12,6 +12,8 @@ port=""             # Set port for SSH service
 protocol=""         # Set SSH Protocol - Options: 1, 2
 allowusers=""       # Optional - Leave blank if uneeded - Set allowed users - Usage: Enter space between users
 
+###############################################################################################################################
+
 # Create a backup of default sshd_config
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config_default
 
