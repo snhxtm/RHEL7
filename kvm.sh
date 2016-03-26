@@ -23,7 +23,7 @@ systemctl enable libvirtd
 systemctl start libvirtd
 
 # Stop network manager
-systemctl stop NetworkManager
+#systemctl stop NetworkManager
 
 # Stop network service
 systemctl stop network
@@ -31,11 +31,13 @@ systemctl stop network
 # Create bridged adapter
 echo -e 'DEVICE="br0"
 TYPE="Bridge"
-IPADDR="'$ipaddr'"
-NETMASK="'$netmask'"
 BOOTPROTO="none"
 ONBOOT="yes"
-NM_CONTROLLED="no"' > /etc/sysconfig/network-scripts/ifcfg-br0
+IPADDR="'$ipaddr'"
+NETMASK="'$netmask'"
+GATEWAY="'$gateway'"
+DNS1="'$dns1'"' > /etc/sysconfig/network-scripts/ifcfg-br0
+#NM_CONTROLLED="no"
 
 # Find ethernet device name
 eth=`ls /etc/sysconfig/network-scripts | grep ifcfg-e | cut -d- -f2`
@@ -45,21 +47,21 @@ echo -e 'DEVICE="'$eth'"
 TYPE="Ethernet"
 BOOTPROTO="none"
 ONBOOT="yes"
-NM_CONTROLLED="no"
 BRIDGE="br0"' > /etc/sysconfig/network-scripts/ifcfg-$eth
+#NM_CONTROLLED="no"
 
 #set gateway
-echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
+#echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
 
 #set nameserver
-echo $hostname | cut -d. -f2,3 | sed s/^/"search "/ > /etc/resolv.conf
-echo nameserver $dns1 >> /etc/resolv.conf
+#echo $hostname | cut -d. -f2,3 | sed s/^/"search "/ > /etc/resolv.conf
+#echo nameserver $dns1 >> /etc/resolv.conf
 
 # Add 2nd and/or 3rd nameservers if variables are set
 if [ -n "$dns2" ]; then
-  echo nameserver $dns2 >> /etc/resolv.conf
+  echo DNS2=\"$dns2\" >> /etc/sysconfig/network-scripts/ifcfg-br0
   if [ -n "$dns3" ]; then
-    echo nameserver $dns3 >> /etc/resolv.conf
+    echo DNS3=\"$dns3\" >> /etc/sysconfig/network-scripts/ifcfg-br0
   fi
 fi
 
