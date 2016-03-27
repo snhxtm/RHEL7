@@ -31,9 +31,11 @@ firewall-cmd --set-default-zone=internal --permanent
 # Reload firewalld
 firewall-cmd --complete-reload
 
+# Add service
 if [ -n "$services" ]; then
 for service in $services; do
 firewall-cmd --zone=internal --add-service=$service --permanent
 done
 fi
+
 exit 0
