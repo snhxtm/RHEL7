@@ -8,9 +8,9 @@
 
 intif=""          # Set Internal interface
 extif=""          # Set External interface
-services=""       # Optional - leave blank if uneeded. Add services as list - Example - "http ssh dns"
-tcp=""
-udp=""
+services=""       # Optional - leave blank if uneeded. Add services as list - Example "http ssh dns"
+tcp=""            # Optional - leave blank if uneeded. Add tcp port as list
+udp=""            # Optional - leave blank if uneeded. Add services as list
 
 ###############################################################################################################################
 
@@ -29,9 +29,6 @@ firewall-cmd --change-interface=$extif --zone=external --permanent
 
 # Set default interface to internal
 firewall-cmd --set-default-zone=internal --permanent
-
-# Reload firewalld
-firewall-cmd --complete-reload
 
 # Add service
 if [ -n "$services" ]; then
@@ -53,5 +50,8 @@ for udplist in $udp; do
 firewall-cmd --zone=internal --add-service=$udplist --permanent
 done
 fi
+
+# Reload firewalld
+firewall-cmd --complete-reload
 
 exit 0
