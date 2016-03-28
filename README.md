@@ -27,11 +27,6 @@ sv_kvm.sh
 * **Description:** Configure a KVM hypervisor.<br>
 * **Usage:** Edit variables with desired network configuration.
 
-sv_pxeboot.sh
----
-* **Description:** configure network booting from local repository.<br>
-* **Usage:** Edit the variables with desired configuration and execute.
-
 sv_localrepo.sh
 ---
 * **Description:** Configure and sync a local repository and set sync schedule.<br>
@@ -41,6 +36,11 @@ sv_nat.sh
 ---
 * **Description:** Configure a NAT Gateway.<br>
 * **Usage:** Edit variables with desired configuration and execute.
+
+sv_pxeboot.sh
+---
+* **Description:** configure network booting from local repository.<br>
+* **Usage:** Edit the variables with desired configuration and execute.
 
 sv_sshd.sh
 ---
