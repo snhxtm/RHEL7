@@ -6,12 +6,12 @@
 #CREATED BY: William Thomas Bland.
 ###############################################################################################################################
 
-$repodir=""       # Example - /var/www/html/centos/7/
-$mirror=""        # Example - ftp.plusline.de/CentOS/7/
-$filename=""      # Example - local.repo
-$repolist=""      # Example - os updates extras
-$epel=""          # Example - ftp.plusline.de/epel/7/
-$epelenable=""    # Example - y/n
+repodir=""       # Example - /var/www/html/centos/7/
+mirror=""        # Example - ftp.plusline.de/CentOS/7/
+filename=""      # Example - local.repo
+repolist=""      # Example - os updates extras
+epel=""          # Example - ftp.plusline.de/epel/7/
+epelenable=""    # Example - y/n
 
 ###############################################################################################################################
 
@@ -33,31 +33,31 @@ fi
 
 # Define repositories in /etc/yum.repos.d/ and create synced directories
 for repo in $repolist; do
-echo -e '['$repo']
-name='$repo'
-baseurl=ftp://'$HOSTNAME'/centos/7/'$repo'/x86_64
-gpgcheck=0' >> /etc/yum.repos.d/local.repo
+echo "[$repo]
+name=$repo
+baseurl=ftp://$HOSTNAME/centos/7/$repo/x86_64
+gpgcheck=0" >> /etc/yum.repos.d/$filename
 rsync -av rsync://$mirror/$repo/x86_64 $repodir/$repo
 cron=$cron; rsync -av rsync://$mirror/$repo/x86_64 $repodir/$repo
 done
 
 # Define epel repository in /etc/yum.repos.d/ and create synced directories if variable is set
 if [ -n "$epel" ]; then
-echo -e '[epel]
+echo "[epel]
 name=epel
-baseurl=ftp://'$HOSTNAME'/centos/7/epel/x86_64
-gpgcheck=0' >> /etc/yum.repos.d/local.repo
+baseurl=ftp://$HOSTNAME/centos/7/epel/x86_64
+gpgcheck=0" >> /etc/yum.repos.d/$filename
 if [ $epelenable == "y" ]; then
-echo "enabled=1" >> /etc/yum.repos.d/local.repo
+echo "enabled=1" >> /etc/yum.repos.d/$filename
 else
-echo "enabled=0" >> /etc/yum.repos.d/local.repo
+echo "enabled=0" >> /etc/yum.repos.d/$filename
 fi
 rsync -av --exclude debug/ rsync://$epel/x86_64 $repodir/epel
 cron=$cron; rsync -av --exclude debug/ rsync://$epel/x86_64 $repodir/epel
 fi
 
 # Add cronjob to keep repos synced
-echo 0 0 * * * 0 root $cron >> /etc/crontab
+echo "0 0 * * * 0 root $cron" >> /etc/crontab
 
 # Configure selinux
 semanage fcontext --add -t httpd_sys_rw_content_t 'var/www/html(/.*)?'
