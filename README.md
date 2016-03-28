@@ -7,15 +7,25 @@ nw_bridge.sh
 * **Description:** Configure a bridged network interface.<br>
 * **Usage:** Edit variables with desired network configuration and execute.
 
-sv_kvm.sh
+nw_static.sh
 ---
-* **Description:** Configure a KVM hypervisor.<br>
-* **Usage:** Edit variables with desired network configuration.
+* **Description:** Configure a static IP.<br>
+* **Usage:** Edit variables with desired network configuration and execute.
 
 pk_install.sh
 ---
 * **Description:** Perform full update and install essential packages.<br>
 * **Usage:** No variables to edit, simply execute script.
+
+sv_dhcpd.sh
+---
+* **Description:** Configure a dhcp server.<br>
+* **Usage:** Edit variables with desired configuration and execute.
+
+sv_kvm.sh
+---
+* **Description:** Configure a KVM hypervisor.<br>
+* **Usage:** Edit variables with desired network configuration.
 
 sv_pxeboot.sh
 ---
@@ -27,15 +37,15 @@ sv_localrepo.sh
 * **Description:** Configure and sync a local repository and set sync schedule.<br>
 * **Usage:** Edit variables with desired configuration and execute.
 
+sv_nat.sh
+---
+* **Description:** Configure a NAT Gateway.<br>
+* **Usage:** Edit variables with desired configuration and execute.
+
 sv_sshd.sh
 ---
 * **Description:** Configure hardened SSH service.<br>
 * **Usage:** Edit variables with desired configuration and execute.
-
-nw_static.sh
----
-* **Description:** Configure a static IP.<br>
-* **Usage:** Edit variables with desired network configuration and execute.
 
 vm_create.ks
 ---
