@@ -25,15 +25,15 @@ maxlease=""         # Set maximum lease time
 yum install dhcp -y
 
 # Configure dhcp service settings
-echo "option domain-name-servers $dns1;" > /etc/dhcp/dhcpd.conf 
+echo -n "option domain-name-servers $dns1" > /etc/dhcp/dhcpd.conf 
 if [ -n "$dns2" ]; then
-  echo "option domain-name-servers $dns1, $dns2;" > /etc/dhcp/dhcpd.conf 
+  echo -n ", $dns2" >> /etc/dhcp/dhcpd.conf 
   if [ -n "$dns3" ]; then
-    echo "option domain-name-servers $dns1, $dns2, $dns3;" > /etc/dhcp/dhcpd.conf 
+    echo -n ", $dns3" >> /etc/dhcp/dhcpd.conf 
   fi
 fi
 
-echo "option domain-name \"$domain\";
+echo -e ";\noption domain-name \"$domain\";
 default-lease-time $deflease;
 max-lease-time $maxlease;
 authoritative;
