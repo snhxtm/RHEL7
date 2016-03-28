@@ -20,4 +20,8 @@ for ntp in $ntplist; do
 sed -i "/# These servers were defined in the installation:/i server $ntp iburst" /etc/ntp.conf
 done
 
+# Start and enable ntp service
+systemctl start ntpd
+systemctl enable ntpd
+
 exit 0
