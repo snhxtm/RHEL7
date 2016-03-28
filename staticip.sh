@@ -25,19 +25,19 @@ systemctl disable NetworkManager
 systemctl stop network
 
 # Find ethernet device name
-eth=`ls /etc/sysconfig/network-scripts | grep ifcfg-e | cut -d- -f2`
+eth=$(echo /etc/sysconfig/network-scripts/ifcfg-e* | cut -d- -f3)
 
 # Modify ethernet adapter
-echo -e 'DEVICE="'$eth'"
-TYPE="Ethernet"
-BOOTPROTO="none"
-ONBOOT="yes"
-NM_CONTROLLED="no"
-IPADDR="'$ipaddr'"
-NETMASK="'$netmask'"' > /etc/sysconfig/network-scripts/ifcfg-$eth
+echo "DEVICE=\"$eth\"
+TYPE=\"Ethernet\"
+BOOTPROTO=\"none\"
+ONBOOT=\"yes\"
+NM_CONTROLLED=\"no\"
+IPADDR=\"$ipaddr\"
+NETMASK=\"$netmask\"" > /etc/sysconfig/network-scripts/ifcfg-"$eth"
 
 # Set gateway
-echo 'GATEWAY="'$gateway'"' > /etc/sysconfig/network
+echo GATEWAY="$gateway" > /etc/sysconfig/network
 
 # Set nameserver
 echo $hostname | cut -d. -f2,3 | sed s/^/"search "/ > /etc/resolv.conf
