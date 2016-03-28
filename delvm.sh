@@ -7,13 +7,13 @@
 ###############################################################################################################################
 
 # Edit variables or define variables as agruments. Example - delv.sh vm pool
-$vm=$1      # Virtual machine name
-$pool=$2    # Pool name
+vm=$1      # Virtual machine name
+pool=$2    # Pool name
 
 ###############################################################################################################################
 
-virsh destroy $vm
-virsh undefine $vm
-virsh vol-delete --pool $pool $vm.img
+virsh destroy "$vm"
+virsh undefine "$vm"
+virsh vol-delete --pool "$pool" "$vm".img
 
 exit 0
