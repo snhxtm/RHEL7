@@ -22,6 +22,11 @@ sv_dhcpd.sh
 * **Description:** Configure a dhcp server.<br>
 * **Usage:** Edit variables with desired configuration and execute.
 
+sv_dns.sh
+---
+* **Description:** Configure a dns server.<br>
+* **Usage:** Edit variables with desired configuration and execute.
+
 sv_kvm.sh
 ---
 * **Description:** Configure a KVM hypervisor.<br>
@@ -35,6 +40,11 @@ sv_localrepo.sh
 sv_nat.sh
 ---
 * **Description:** Configure a NAT Gateway.<br>
+* **Usage:** Edit variables with desired configuration and execute.
+
+sv_ntpd.sh
+---
+* **Description:** Configure Network Time Protocol.<br>
 * **Usage:** Edit variables with desired configuration and execute.
 
 sv_pxeboot.sh
