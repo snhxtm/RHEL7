@@ -37,6 +37,11 @@ sv_nat.sh
 * **Description:** Configure a NAT Gateway.<br>
 * **Usage:** Edit variables with desired configuration and execute.
 
+sv_ntpd.sh
+---
+* **Description:** Configure Network Time Protocol.<br>
+* **Usage:** Edit variables with desired configuration and execute.
+
 sv_pxeboot.sh
 ---
 * **Description:** configure network booting from local repository.<br>
